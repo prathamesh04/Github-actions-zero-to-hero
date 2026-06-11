@@ -1,28 +1,29 @@
-name: My First GitHub Actions
+name: Python Self Hosted CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+      - master
 
 jobs:
   build:
     runs-on: self-hosted
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
       - name: Verify Python
-        run: python3 --version
-
-      - name: Install pip
         run: |
-          sudo apt update
-          sudo apt install -y python3-pip
+          python3 --version
+          python3 -m pip --version
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
-          python3 -m pip install --upgrade pip --break-system-packages
           python3 -m pip install pytest --break-system-packages
 
-      - name: Run tests
+      - name: Run Tests
         run: |
           cd src
-          python3 -m pytest addition.py
+          python3 -m pytest -v

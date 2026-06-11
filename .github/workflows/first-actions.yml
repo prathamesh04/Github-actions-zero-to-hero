@@ -2,9 +2,12 @@ name: My First GitHub Actions
 
 on: [push]
 
+permissions:
+  contents: read
+
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:

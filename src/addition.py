@@ -11,6 +11,11 @@ def divide(a, b):
         raise ValueError("Cannot divide by zero")
     return a / b
 
+def modulo(a, b):
+    if b == 0:
+        raise ValueError("Cannot take modulo by zero")
+    return a % b
+
 def test_add():
     assert add(1, 2) == 3
     assert add(1, -1) == 0
@@ -25,3 +30,8 @@ def test_divide():
     assert divide(6, 2) == 3.0
     assert divide(5, 2) == 2.5
     assert divide(0, 5) == 0.0
+
+def test_modulo():
+    assert modulo(10, 3) == 1
+    assert modulo(7, 7) == 0
+    assert modulo(-1, 4) == 3
